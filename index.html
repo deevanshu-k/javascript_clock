@@ -5,11 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real-time Clock</title>
+    <title>Dynamic Clock</title>
 </head>
 
 <body>
-
 
     <style>
         * {
@@ -60,10 +59,15 @@
         function changeProgress(ss) {
             let barContainer = document.getElementById('bar-con');
             let bar = document.getElementById('bar');
-            bar.style.width = (barContainer.offsetWidth) * (ss / 60)+'px';
+            bar.style.width = (barContainer.offsetWidth) * (ss / 60) + 'px';
             // Sec: 0-60;  30/60 * 100 = 50;
         }
-
+        
+        
+        function padValue(ss)
+         {
+            return (ss < 10) ? "0" + ss : ss;
+        }
         function getdata() {
             let d = new Date();
 
@@ -71,6 +75,16 @@
             let hh = d.getHours()
             let mm = d.getMinutes()
             let ss = d.getSeconds()
+
+
+
+            // if (ss < 10) 
+            // {
+
+            //      sss = ss.toString().padStart(2, '0')
+            // }
+
+            ss = padValue(ss);
 
             hh = (hh + 24) % 24;
             tt = hh < 12 ? 'A.M' : 'P.M';
@@ -80,7 +94,6 @@
 
             document.getElementById("p1").innerHTML = `${hh}-${mm}-${ss} ${tt}`;
         }
-
         setInterval(getdata, 1000)
 
 
