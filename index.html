@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Clock</title>
+</head>
+
+<body>
+
+
+    <style>
+        * {
+
+            margin: 0;
+            padding: 0;
+            
+
+            font-family: 'Orbitron', sans-serif;
+
+
+        }
+
+
+        body {
+
+            background-color: #F0F8FF;
+         align-items: center;
+
+        }
+
+
+
+
+
+        /* color: white; */
+        /* font-size: 136px;
+            background-color: #5F546E;
+            width: 585px;
+            margin-top: 333px;
+            margin-left: 579px;
+            padding: 50px;
+            text-align: center;
+           
+            border: 50px solid white;
+              */
+
+
+
+
+
+        .box {
+            color: white;
+            font-size: 65px;
+            background-color: #24292D;
+            border-radius: 25px;
+            margin: auto;
+            width: 585px;
+            padding: 00px;
+            text-align: center;
+            border: 50px solid #24292D;
+            box-shadow: 5px 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            margin-top: 265px;
+            margin-left: 572px;
+
+        }
+
+       
+    </style>
+
+
+    <div class="box">
+
+        <p id="p1"></p>
+        <p id="p2"></p>
+    </div>
+    <script>
+        function getdata() {
+            let d = new Date();
+   
+             
+            let dd = d.getDate()
+            let m = d.getMonth()
+            let yy = d.getFullYear()
+            let hh = d.getHours()
+
+
+            hh = (hh + 24) % 24; 
+            tt = hh < 12 ? 'A.M' : 'P.M';
+            hh = (hh % 12) || 12
+            let mm = d.getMinutes()
+            let ss = d.getSeconds()
+            document.getElementById("p1").innerHTML = `${hh}-${mm}-${ss} ${tt}`
+            // document.getElementById("p2").innerHTML = `${dd}-${m}-${yy}`
+
+        }
+
+
+
+        setInterval(getdata, 1000)
+    </script>
+
+</body>
+
+</html>
