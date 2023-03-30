@@ -62,12 +62,17 @@
             bar.style.width = (barContainer.offsetWidth) * (ss / 60) + 'px';
             // Sec: 0-60;  30/60 * 100 = 50;
         }
+         
+
+        let a ;
         
-        
-        function padValue(ss)
+        function padValue(a)
          {
-            return (ss < 10) ? "0" + ss : ss;
+            return (a < 10) ? "0" + a : a;
         }
+
+
+        
         function getdata() {
             let d = new Date();
 
@@ -78,18 +83,18 @@
 
 
 
-            // if (ss < 10) 
-            // {
+           
 
-            //      sss = ss.toString().padStart(2, '0')
-            // }
-
-            ss = padValue(ss);
-
+            
+            
+            
             hh = (hh + 24) % 24;
             tt = hh < 12 ? 'A.M' : 'P.M';
             hh = (hh % 12) || 12
-
+            ss = padValue(ss);
+            mm = padValue(mm);
+            hh = padValue(hh);
+            
             changeProgress(ss);
 
             document.getElementById("p1").innerHTML = `${hh}-${mm}-${ss} ${tt}`;
