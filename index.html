@@ -13,46 +13,23 @@
 
     <style>
         * {
-
             margin: 0;
             padding: 0;
-            
-
             font-family: 'Orbitron', sans-serif;
-
-
         }
+
+
 
 
         body {
-			width:100vw;
-      		height:100vh;
-      		display:flex;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
             background-color: #F0F8FF;
-         align-items: center;
-      	justify-content:center;
+            align-items: center;
+            justify-content: center;
 
         }
-
-
-
-
-
-        /* color: white; */
-        /* font-size: 136px;
-            background-color: #5F546E;
-            width: 585px;
-            margin-top: 333px;
-            margin-left: 579px;
-            padding: 50px;
-            text-align: center;
-           
-            border: 50px solid white;
-              */
-
-
-
-
 
         .box {
             color: white;
@@ -64,43 +41,49 @@
             text-align: center;
             border: 50px solid #24292D;
             box-shadow: 5px 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-
         }
-
-       
     </style>
+
 
 
     <div class="box">
 
         <p id="p1"></p>
-        <p id="p2"></p>
+        <div class="bar-con" id="bar-con" style="width: 585px;background-color: lightblue;">
+            <div class="bar" id="bar" style="height:20px;background-color: lightseagreen;"></div>
+        </div>
     </div>
+
+
     <script>
-        function getdata() {
-            let d = new Date();
-   
-             
-            let dd = d.getDate()
-            let m = d.getMonth()
-            let yy = d.getFullYear()
-            let hh = d.getHours()
 
-
-            hh = (hh + 24) % 24; 
-            tt = hh < 12 ? 'A.M' : 'P.M';
-            hh = (hh % 12) || 12
-            let mm = d.getMinutes()
-            let ss = d.getSeconds()
-            document.getElementById("p1").innerHTML = `${hh}-${mm}-${ss} ${tt}`
-            // document.getElementById("p2").innerHTML = `${dd}-${m}-${yy}`
-
+        function changeProgress(ss) {
+            let barContainer = document.getElementById('bar-con');
+            let bar = document.getElementById('bar');
+            bar.style.width = (barContainer.offsetWidth) * (ss / 60)+'px';
+            // Sec: 0-60;  30/60 * 100 = 50;
         }
 
+        function getdata() {
+            let d = new Date();
 
+            let dd = d.getDate()
+            let hh = d.getHours()
+            let mm = d.getMinutes()
+            let ss = d.getSeconds()
+
+            hh = (hh + 24) % 24;
+            tt = hh < 12 ? 'A.M' : 'P.M';
+            hh = (hh % 12) || 12
+
+            changeProgress(ss);
+
+            document.getElementById("p1").innerHTML = `${hh}-${mm}-${ss} ${tt}`;
+        }
 
         setInterval(getdata, 1000)
+
+
     </script>
 
 </body>
