@@ -41,66 +41,95 @@
             border: 50px solid #24292D;
             box-shadow: 5px 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
+
+
+        #day {
+
+            font-size: 30px;
+            /* margin-top: 10px; */
+        }
     </style>
 
 
 
-    <div class="box">
+<div class="box">
+        <p id="day"></p>
 
         <p id="p1"></p>
         <div class="bar-con" id="bar-con" style="width: 585px;background-color: lightblue;">
             <div class="bar" id="bar" style="height:20px;background-color: lightseagreen;"></div>
+
         </div>
     </div>
 
 
     <script>
 
+        // progress bar function
         function changeProgress(ss) {
             let barContainer = document.getElementById('bar-con');
             let bar = document.getElementById('bar');
             bar.style.width = (barContainer.offsetWidth) * (ss / 60) + 'px';
             // Sec: 0-60;  30/60 * 100 = 50;
         }
-         
 
-        let a ;
-        
-        function padValue(a)
-         {
+
+        // passing variable a ;
+        let a;
+
+
+        function padValue(a) {
             return (a < 10) ? "0" + a : a;
         }
 
 
-        
+        // clock function
         function getdata() {
             let d = new Date();
 
-            let dd = d.getDate()
+
             let hh = d.getHours()
             let mm = d.getMinutes()
             let ss = d.getSeconds()
+            let day = d.getDay()
+
+
+            let date = d.getDate()
+            let month = d.getMonth()
+            let year = d.getFullYear()
+
+   
 
 
 
-           
+            arr = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
-            
-            
-            
+
+
+
+
+   // converting am to pm 
             hh = (hh + 24) % 24;
             tt = hh < 12 ? 'A.M' : 'P.M';
             hh = (hh % 12) || 12
+
+            // for adding zeros 
             ss = padValue(ss);
             mm = padValue(mm);
             hh = padValue(hh);
+
+            date = padValue(date)
+            month = padValue(month)
+            
             
             changeProgress(ss);
-
+            
             document.getElementById("p1").innerHTML = `${hh}-${mm}-${ss} ${tt}`;
+            document.getElementById("day").innerHTML = `${arr[day - 1]} ${date}/${month}/${year}`
         }
-        setInterval(getdata, 1000)
 
+        
+        setInterval(getdata, 1000)
 
     </script>
 
